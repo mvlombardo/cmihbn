@@ -84,4 +84,4 @@ if __name__ == '__main__':
         # save report and results to json file
         fname2save = "fooof_%s" % (electrode)
         fm.save_report(file_name = fname2save)
-        # fm.save(file_name = fname2save, save_results = True)
+        fm.save(file_name = fname2save, save_results = True)
