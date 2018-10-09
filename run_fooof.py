@@ -4,7 +4,7 @@
 Run FOOOF on EEG data. Will run FOOOF for each electrode.
 
 Example usage:
-python run_fooof.py --data RestingState_processed.csv --srate 500 --minfreq 3 --maxfreq 40
+python run_fooof.py --data RestingState_processed.txt --srate 500 --minfreq 3 --maxfreq 40
 """
 
 # import modules
@@ -14,6 +14,7 @@ import numpy as np
 # import matplotlib.pyplot as plt
 from optparse import OptionParser
 import pandas as pd
+from neurodsp import spectral
 
 
 # function to parse input arguments
@@ -29,16 +30,23 @@ def parse_args():
     (options,args) = parser.parse_args()
     return(options)
 
-# Calculate the psd
-def calc_psd(x, srate):
-    from scipy import signal
-    f, psd = sp.signal.welch(x, srate, nperseg=1000)
-    return(f, psd)
 
 # read in txt file with processed data as a data frame
 def load_data(fname):
     data = pd.read_csv(fname, delimiter="\t")
     return(data)
+
+# Calculate the psd
+def calc_psd(data, srate):
+    from scipy import signal
+    (f, psd) = sp.signal.welch(data, srate, nperseg=1000)
+    return(f, psd)
+
+# Calculate psd using neurodsp.spectral.psd
+def calc_spectral_psd(data, srate, method_type = "median"):
+    (f, psd) = spectral.psd(x = data, Fs = srate, method = method_type, nperseg = srate*2)
+    return(f, psd)
+
 
 # boilerplate code to call main code for executing
 if __name__ == '__main__':
@@ -61,7 +69,8 @@ if __name__ == '__main__':
     # loop over electrodes
     for electrode in electrodes:
         # calculate PSD
-        (f, psd) = calc_psd(data[electrode], srate)
+        # (f, psd) = calc_psd(data[electrode], srate)
+        (f, psd) = calc_spectral_psd(data[electrode], srate)
 
         # Initialize FOOOF object
         fm = FOOOF()
@@ -75,4 +84,4 @@ if __name__ == '__main__':
         # save report and results to json file
         fname2save = "fooof_%s" % (electrode)
         fm.save_report(file_name = fname2save)
-        fm.save(file_name = fname2save, save_results = True)
+        # fm.save(file_name = fname2save, save_results = True)
