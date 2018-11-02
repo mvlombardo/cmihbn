@@ -4,7 +4,7 @@
 Run FOOOF on EEG data. Will run FOOOF for each electrode.
 
 Example usage:
-python run_fooof.py --data RestingState_processed.txt --srate 500 --minfreq 3 --maxfreq 40
+python run_fooof.py --data RestingState_processed.txt --srate 500 --minfreq 1 --maxfreq 50 --minwidth 1 --maxwidth 12
 """
 
 # import modules
@@ -27,6 +27,8 @@ def parse_args():
     parser.add_option('--srate',"",dest='srate',help="Sampling rate file ex: --srate 500",default=None)
     parser.add_option('--minfreq',"",dest='minfreq',help="Minimum frequency file ex: --minfreq 3",default=3)
     parser.add_option('--maxfreq',"",dest='maxfreq',help="Maximum frequency file ex: --maxfreq 40",default=40)
+    parser.add_option('--minwidth',"",dest='minwidth',help="Minimum frequency width limit file ex: --minwidth 0.5",default=0.5)
+    parser.add_option('--maxwidth',"",dest='maxwidth',help="Maximum frequency width limit file ex: --maxwidth 12",default=12)
     (options,args) = parser.parse_args()
     return(options)
 
@@ -57,6 +59,8 @@ if __name__ == '__main__':
     srate = np.array(opts.srate, dtype = int)
     minfreq = np.array(opts.minfreq, dtype = int)
     maxfreq = np.array(opts.maxfreq, dtype = int)
+    minwidth = np.array(opts.minwidth, dtype = float)
+    maxwidth = np.array(opts.maxwidth, dtype = float)
 
     # load data
     data = load_data(datafile)
@@ -73,7 +77,7 @@ if __name__ == '__main__':
         (f, psd) = calc_spectral_psd(data[electrode], srate)
 
         # Initialize FOOOF object
-        fm = FOOOF()
+        fm = FOOOF(peak_width_limits=[minwidth, maxwidth])
 
         # Define frequency range across which to model the spectrum
         freq_range = [minfreq, maxfreq]
