@@ -97,7 +97,7 @@ if __name__ == '__main__':
     VERBOSE = opts.verbose
 
     # other parameters that stay fixed for HBN data
-    srate = int(opts.rate)
+    srate = int(opts.srate)
     window_size_samples = int(opts.winsize)
     window_step_samples = int(opts.winstep)
     window_size_seconds = window_size_samples/srate
