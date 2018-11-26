@@ -18,7 +18,7 @@ import pandas as pd
 from neurodsp import spectral
 import matplotlib.pyplot as plt
 import seaborn as sns
-from optparse import OptionParser
+from optparse import OptionParser, OptionGroup
 
 
 # function to parse input arguments
