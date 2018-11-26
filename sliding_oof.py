@@ -79,7 +79,7 @@ def fooof_me(f, psd, minfreq, maxfreq, minwidth, maxwidth):
 
 
 # make heatmap of correlation matrix over electrodes sliding 1/f time-series
-def make_heatmap(data, out_name = None, colormin=0, color_max=1, cmap2use="bwr", dpi2use=300):
+def make_heatmap(data, out_name = None, color_min=0, color_max=1, cmap2use="bwr", dpi2use=300):
     df4plot = data.astype(float)
     hm_plot = sns.heatmap(df4plot.corr(), vmin=color_min, vmax=color_max,cmap=cmap2use)
     if out_name is not None:
