@@ -137,7 +137,7 @@ if __name__ == '__main__':
 
         if VERBOSE:
             print("working on window %d" % window_number)
-            print("window start %d, window end %d" % (window_start, window_end))
+            print("window start %d, window end %d" % (start_index, window_start + window_size_samples))
 
         # loop over electrodes
         for electrode in electrodes:
