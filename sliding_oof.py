@@ -29,7 +29,7 @@ def parse_args():
 
     # main options
     parser=OptionParser()
-    parser.add_option('--subid',"",dest='subbid',help="Subject ID ex: --subid NDARAA075AMK",default=None)
+    parser.add_option('--subid',"",dest='subid',help="Subject ID ex: --subid NDARAA075AMK",default=None)
     parser.add_option('--task',"",dest='task',help="Task ex: --task RestingState",default=None)
 
     # additional options probably best left as the default
