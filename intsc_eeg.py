@@ -49,7 +49,7 @@ def parse_args():
                       default=None)
     parser.add_option('',"--nlags", \
                       dest='nlags',\
-                      help="number of lags", \
+                      help="number of lags, specified as number of samples", \
                       default=10000)
 
     (options,args) = parser.parse_args()
