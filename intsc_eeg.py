@@ -32,7 +32,7 @@ def parse_args():
 
     parser.add_option('-i',"--input", \
                       dest='imgfile', \
-                      help="Filename of the input rsfMRI 4D time-series dataset", \
+                      help="Filename of the input EEG dataset", \
                       default=None)
     parser.add_option('-o',"--output", \
                       dest='outname', \
