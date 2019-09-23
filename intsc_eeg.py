@@ -5,8 +5,8 @@ Watanabe, T., Rees, G., & Masuda, N. (2019). Atypical intrinsic neural timescale
 
 Example usage
 
-imgfile=~/data/rest_pp01.nii.gz
-outfile=~/data/rest_pp01
+imgfile=~/data/NDARAM848GTE_restingstate.txt
+outfile=~/data/NDARAM848GTE_restingstate_intsc
 srate=500
 nlags=150000
 
