@@ -57,7 +57,8 @@ def load_data(fname):
 
 # Calculate psd using neurodsp.spectral.compute_spectrum
 def calc_spectral_psd(data, srate, method_type = "median"):
-    (f, psd) = spectral.compute_spectrum(sig = data, fs = srate, method = method_type, nperseg = srate*2)
+    # (f, psd) = spectral.compute_spectrum(sig = data, fs = srate, method = method_type, nperseg = srate*2)
+    (f, psd) = spectral.compute_spectrum(sig = data, fs = srate, avg_type = method_type, nperseg = srate*2)
     return(f, psd)
 
 
