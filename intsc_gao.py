@@ -42,6 +42,10 @@ def parse_args():
                       dest='srate',\
                       help="sampling rate in Hz", \
                       default=None)
+    parser.add_option('',"--max_freq_range", \
+                      dest='max_freq_range',\
+                      help="Max frequency range for FOOOF", \
+                      default=50)
 
     (options,args) = parser.parse_args()
 
@@ -86,7 +90,7 @@ def load_data(datafile):
 
 
 # main function for computing intrinsic neural timescale
-def compute_intsc(ts, numtps, srate):
+def compute_intsc(ts, numtps, srate, freq_range=(2,50)):
     """
     Compute intrinsic neural timescale
     """
@@ -109,7 +113,7 @@ def compute_intsc(ts, numtps, srate):
 
     # fit FOOOF & get knee parameter & convert to timescale
     fooof = FOOOFGroup(aperiodic_mode = 'knee', max_n_peaks = 0, verbose = False)
-    fooof.fit(freqs = f_axis, power_spectra = psds.T, freq_range = (2,200))
+    fooof.fit(freqs = f_axis, power_spectra = psds.T, freq_range = freq_range)
     fit_knee = fooof.get_params('aperiodic_params', 'knee')
     fit_exp = fooof.get_params('aperiodic_params', 'exponent')
     knee_freq, taus = convert_knee_val(fit_knee, fit_exp)
@@ -139,12 +143,15 @@ if __name__ == '__main__':
     # sampling rate
     srate = np.array(opts.srate, dtype = float)
 
+    # max frequency range for FOOOF
+    max_freq_range = np.array(opts.max_freq_range, dtype = float)
+
     # load data
     data = load_data(imgfile)
 
     # compute intsc
     ntps = data.shape[0]
-    res = compute_intsc(ts = data, numtps = ntps, srate = srate)
+    res = compute_intsc(ts = data, numtps = ntps, srate = srate, freq_range = (2,max_freq_range))
 
     # write result out to csv file
     outfile = "%s.csv" % outname
