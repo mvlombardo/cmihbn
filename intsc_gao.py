@@ -11,7 +11,7 @@ imgfile=~/data/NDARAM848GTE_restingstate.txt
 outfile=~/data/NDARAM848GTE_restingstate_intsc
 srate=500
 
-python intsc_gao.py -i $imgfile -o $outfile --srate 500
+python intsc_gao.py -i $imgfile -o $outfile --srate $srate --max_freq_range 50
 """
 
 # import libraries
