@@ -137,8 +137,7 @@ try
     end
     
 
-    % CHANNEL SELECTION - - - - - - - - - - - - - - 
-    % subset of 11 channels as EOG
+    % Subset of 11 CHANNELS as EOG - - - - - - - - - - - - - - 
     chan_eye = {'E128', 'E32', 'E25', 'E21', 'E127', 'E17',...
             'E126', 'E14', 'E8', 'E1', 'E125'}
 
@@ -183,16 +182,16 @@ try
     % vis_artifacts to compare the cleaned data to the original.
     % ----------------------------------------------------------------
     
-%   chancorr_crit                       - Correlation threshold. If a channel is correlated at less than this value
-%                                           to its robust estimate (based on other channels), it is considered abnormal in
-%                                           the given time window. OPTIONAL, default = 0.8.
-%   chan_max_broken_time                - Maximum time (either in seconds or as fraction of the recording) during which a 
-%                                           retained channel may be broken. Reasonable range: 0.1 (very aggressive) to 0.6
-%                                           (very lax). OPTIONAL, default = 0.5.
-%   chan_detect_num_iter                - Number of iterations the bad channel detection should run (default = 10)
-%   chan_detected_fraction_threshold	- Fraction how often a channel has to be detected to be rejected in the final
-%                                           rejection (default 0.5)
-%   flatline_crit                       - Maximum duration a channel can be flat in seconds (default 'off')
+    %   chancorr_crit                       - Correlation threshold. If a channel is correlated at less than this value
+    %                                           to its robust estimate (based on other channels), it is considered abnormal in
+    %                                           the given time window. OPTIONAL, default = 0.8.
+    %   chan_max_broken_time                - Maximum time (either in seconds or as fraction of the recording) during which a 
+    %                                           retained channel may be broken. Reasonable range: 0.1 (very aggressive) to 0.6
+    %                                           (very lax). OPTIONAL, default = 0.5.
+    %   chan_detect_num_iter                - Number of iterations the bad channel detection should run (default = 10)
+    %   chan_detected_fraction_threshold	- Fraction how often a channel has to be detected to be rejected in the final
+    %                                           rejection (default 0.5)
+    %   flatline_crit                       - Maximum duration a channel can be flat in seconds (default 'off')
 
 
     if do_cleanraw
@@ -205,8 +204,8 @@ try
 
         
         % !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        % disp('The function clean_rawdata has been deprecated and is only kept for backward');
-        % disp('compatibility. Use the clean_artifacts function instead.');
+        % disp('The function clean_rawdata has been deprecated and is only kept for backward compatibility');
+        % disp('Use the clean_artifacts function instead.');
                             
         % !!! for setting the appropriate parameters of the function see this paper:
         % https://pubmed.ncbi.nlm.nih.gov/31329105/
