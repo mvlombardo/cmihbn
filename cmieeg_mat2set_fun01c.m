@@ -36,9 +36,10 @@ if isempty(cfg)
 %      elseif cfg.do_local; project_dir = 'C:\Users\Utente\Desktop\CMI_EEG_PREProcess';
 %      end
 
+    cfg.project_dir = 'C:\Users\Utente\Desktop\CMI_EEG_PREProcess'
+
     cfg.eeglab_dir = fullfile(cfg.project_dir, 'tool', 'eeglab_20201226')
     
-    cfg.project_dir = 'C:\Users\Utente\Desktop\CMI_EEG_PREProcess'
     cfg.save_dir = fullfile(cfg.project_dir, 'data_pipeline01')
 end
 project_dir = cfg.project_dir;

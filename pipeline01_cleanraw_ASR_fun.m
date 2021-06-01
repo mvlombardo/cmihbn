@@ -23,9 +23,9 @@ function pipeline01_cleanraw_ASR_fun(cfg, subj_name, file_set)
 %% MY CONFIGURATION structure / paths
 if isempty(cfg)
     cfg.do_server = 0
-    cfg.eeglab_dir = fullfile(cfg.project_dir, 'tool', 'eeglab_20201226')
-    
     cfg.project_dir = 'E:\CMI_EEG_PREProcess'
+    
+    cfg.eeglab_dir = fullfile(cfg.project_dir, 'tool', 'eeglab_20201226')
     cfg.data_set_dir = fullfile(cfg.project_dir, 'data_set')
     cfg.save_dir = fullfile(cfg.project_dir, 'data_pipeline01')
     
