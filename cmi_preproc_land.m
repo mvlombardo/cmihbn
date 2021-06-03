@@ -47,7 +47,12 @@ eeg_raw_chanred = eeg_struct;
 %% DOWNSAMPLE
 fprintf('... DOWNSAMPLING \n')
 eeg_struct = pop_resample(eeg_struct, cfg.pp.downsample_rate);
+% fix latency so they are integers
+for i = 1:length(eeg_struct.event)
+    eeg_struct.event(i).latency = ceil(eeg_struct.event(i).latency); 
+end % for i
 eeg_down = eeg_struct;
+
 
 %% BAND-PASS FILTERED data
 fprintf('... BAND-PASS FILTERING \n')
